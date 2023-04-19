@@ -1,0 +1,212 @@
+// THEME: Color pallete
+// ====================================================
+// Colors
+$WHL: #ffffff;
+$WHB: #f4f6fa;
+
+$GRL: #e7e7e7;
+$GRM: #888888;
+$GRD: #303030;
+$GRB: #14161f;
+
+$BLD: #024e97;
+$BLM: #429cf3;
+$BLL: #71b3f3;
+$BLA: #0677e8;
+
+$RDM: #ffd7d7;
+$RDL: #ffecec;
+$RDA: #e00000;
+
+$ORM: #f3d7bc;
+$ORL: #fff0e2;
+$ORA: #ea780e;
+
+$GNM: #aad5c0;
+$GNL: #ebf2ef;
+$GNA: #008243;
+
+// THEME: Variables
+// ====================================================
+$DESKTOP: 1160px;
+$RAD: 15px;
+$SHADOW: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+
+.disabled {
+  display: none !important;
+}
+
+// THEME: Mixins
+// ====================================================
+// Content mixins
+@mixin flex($justify: center, $align: center, $direction: auto) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+@mixin grid($columns: auto, $rows: auto) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+}
+@mixin gap($row-gap: 0, $column-gap: 0) {
+  row-gap: $row-gap;
+  column-gap: $column-gap;
+}
+// Hover mixins
+@mixin color-hover($color, $transition) {
+  will-change: color;
+  transition: color $transition;
+
+  &:hover {
+    color: $color;
+  }
+}
+@mixin background-hover($background, $transition) {
+  will-change: background-color;
+  transition: background-color $transition;
+
+  &:hover {
+    background-color: $background;
+  }
+}
+// Text mixins
+@mixin text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+// Other mixins
+@mixin pseudo($content: "", $display: flex, $position: absolute) {
+  content: $content;
+  display: $display;
+  position: $position;
+}
+@mixin position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// THEME: Common settings
+// ====================================================
+// Wrapper
+html,
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeSpeed;
+
+  height: 100%;
+  scroll-behavior: smooth;
+
+  background-color: $WHB;
+}
+
+.wrapper {
+  @include flex(flex-start, center, column);
+  overflow-x: hidden !important;
+  position: relative;
+  min-height: 100%;
+}
+.container {
+  margin: 0 auto;
+  max-width: $DESKTOP;
+  width: 100%;
+  min-width: fit-content;
+}
+
+// Header
+.header {
+  @include grid(1fr, 1fr);
+  height: 100px;
+  width: 100%;
+
+  background-color: $WHL;
+  box-shadow: $SHADOW;
+
+  &__grid {
+    @include flex(center, center, row);
+    @include gap(0, 20px);
+  }
+  &__text {
+    @include flex(center, center, row);
+    @include gap(0, 5px);
+  }
+
+  &__container {
+    @include flex(space-between, center, row);
+    height: 100%;
+  }
+}
+
+// Main content
+.main {
+  padding: 100px 0;
+  flex: 1 1 auto;
+  width: 100%;
+
+  margin: 0 auto;
+
+  &__container {
+    @include flex(center, center, row);
+  }
+}
+
+.form {
+  @include grid(1fr, 1fr);
+  @include gap(20px, 0);
+  padding: 30px;
+  border-radius: $RAD;
+  background-color: $WHL;
+  box-shadow: $SHADOW;
+  width: 400px;
+
+  &__grid {
+    @include grid(1fr, 1fr);
+    @include gap(20px, 0);
+  }
+
+  &__input,
+  &__select {
+    height: 40px;
+    width: 100%;
+    padding: 0 15px;
+    outline: none !important;
+    border: none !important;
+    border-radius: $RAD;
+    background-color: $WHB;
+    color: $GRD;
+  }
+
+  &__button {
+    @include flex(center, center, row);
+    width: 100%;
+    height: 40px;
+    border-radius: $RAD;
+    background-color: $BLA;
+    color: $WHL;
+
+    outline: none !important;
+    border: none !important;
+    cursor: pointer;
+
+    font-weight: 600;
+
+    & > a {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// Text
+p {
+  &.link {
+    color: $BLA;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

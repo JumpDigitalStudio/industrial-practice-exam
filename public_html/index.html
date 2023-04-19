@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Учет бытовой техники</title>
+
+	<link rel="stylesheet" href="/assets/css/normalize.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<script src="/assets/js/script.js" defer></script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container container">
+				<h2>Учет бытовой техники</h2>
+			</div>
+		</header>
+		<main class="main">
+			<div class="main__container container">
+				<form action="/lib/handlers/auth_handler.php" method="post" class="form auth">
+					<h2>Авторизация</h2>
+					<input type="text" name="userName" class="form__input" placeholder="Паспорт или ИНН *" required>
+					<input type="password" name="userPass" class="form__input" placeholder="Введите пароль *" required>
+					<input type="submit" name="btnAuth" class="form__button">
+					<p class="link" id="goToReg">Я здесь впервые</p>
+				</form>
+				<form action="/lib/handlers/reg_hadler.php" method="post" class="form reg disabled">
+					<h2>Регистрация</h2>
+					<select name="userType" class="form__select" id="userTypeSelect" required>
+						<option value="1" selected>Физическое лицо</option>
+						<option value="2">Компания</option>
+					</select>
+					<!-- Для физ. лиц -->
+					<div class="form__grid" id="dataOfFiz">
+						<input type="text" name="userFizName" class="form__input" placeholder="ФИО *" required>
+						<input type="text" name="userFizShort" class="form__input" placeholder="Логин *" required>
+						<input type="text" name="userFizPassport" class="form__input" placeholder="Паспорт *" maxlength="15"
+							required>
+						<input type="password" name="userFizPass" class="form__input" placeholder="Пароль *" required>
+					</div>
+					<!-- Для юр. лиц -->
+					<div class="form__grid disabled" id="dataOfUri">
+						<input type="text" name="userUriName" class="form__input" placeholder="Полное наименование *" required>
+						<input type="text" name="userUriShort" class="form__input" placeholder="Короткое наименование *" required>
+						<input type="text" name="userUriPassport" class="form__input" placeholder="ИНН компании *" maxlength="15"
+							required>
+						<input type="password" name="userUriPass" class="form__input" placeholder="Пароль *" required>
+					</div>
+					<input type="submit" name="btnReg" class="form__button">
+					<p class="link" id="goToAuth">У меня есть аккаунт</p>
+				</form>
+			</div>
+		</main>
+	</div>
+</body>
+
+</html>
